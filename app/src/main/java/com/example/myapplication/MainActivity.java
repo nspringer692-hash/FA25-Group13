@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * onCreate method - runs when the app starts up
      * This method initializes the UI and sets up the initial display values
-     */  
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Call the parent class's onCreate method (required for Android)

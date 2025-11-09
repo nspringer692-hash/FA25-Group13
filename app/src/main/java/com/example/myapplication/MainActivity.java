@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 // Import necessary Android libraries
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     // Declare UI element variables (these connect to elements in activity_main.xml)
     public ConstraintLayout main;           // The main container layout
     public Button addButton;                // The "Add" button
+    public Button goToSecondPageButton;     // Button to navigate to second page
     public EditText foodItem;               // Input field for food name
     public TextView caloriesText;           // Label that says "Calories: "
     public TextView sugarText;              // Label that says "Sugar:"
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         // findViewById links the Java variables to the UI elements defined in activity_main.xml
         main = findViewById(R.id.main);
         addButton = findViewById(R.id.addButton);
+        goToSecondPageButton = findViewById(R.id.goToSecondPageButton);
         foodItem = findViewById(R.id.foodItem);
         caloriesText = findViewById(R.id.caloriesText);
         sugarText = findViewById(R.id.sugarText);
@@ -93,8 +96,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
+        // Navigate to second page when button is clicked
+        goToSecondPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(main, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

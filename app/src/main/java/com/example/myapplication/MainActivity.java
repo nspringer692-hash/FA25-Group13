@@ -84,29 +84,50 @@ public class MainActivity extends AppCompatActivity {
         String totalSugar_Display = totalSugar.getText().toString() + " " + totalSugarIntake + " g";
         totalSugar.setText(totalSugar_Display);
 
-        //Method onClick goes through when the button "Add" is pressed.
+        /**
+         * Set up click listener for the "Add" button
+         * When clicked, this adds the preset calorie and sugar amounts to the running totals
+         * and updates the display to show the new total values.
+         */
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Increment total sugar intake by the preset amount
                 totalSugarIntake = totalSugarIntake + addSugar;
+                // Increment total calorie intake by the preset amount
                 totalCalorieIntake = totalCalorieIntake + addCal;
+                // Update the displayed total calories
                 totalCalories.setText("Total Calories: " + totalCalorieIntake);
+                // Update the displayed total sugar with units
                 totalSugar.setText("Total Sugar: " + totalSugarIntake + " g");
 
             }
         });
 
-        // Navigate to second page when button is clicked
+        /**
+         * Set up click listener for the "Go to Second Page" button
+         * When clicked, this creates an Intent to navigate to SecondActivity
+         * and starts that activity, transitioning the user to the second screen.
+         */
         goToSecondPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Create an Intent to launch SecondActivity
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                // Start the SecondActivity
                 startActivity(intent);
             }
         });
 
+        /**
+         * Set up window insets listener for edge-to-edge display
+         * This handles system bars (status bar, navigation bar) by applying appropriate padding
+         * to the main layout so content doesn't get hidden behind system UI elements.
+         */
         ViewCompat.setOnApplyWindowInsetsListener(main, (v, insets) -> {
+            // Get the insets for system bars (status bar, navigation bar, etc.)
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            // Apply padding to the view to prevent content from being obscured by system bars
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
